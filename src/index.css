@@ -270,6 +270,10 @@ button {
   align-items: center;
 }
 
+.socialIconProviders {
+  display: flex;
+}
+
 .socialIconDiv {
   cursor: pointer;
   display: flex;
@@ -286,6 +290,10 @@ button {
 
 .socialIconImg {
   width: 100%;
+}
+
+.socialIconImg.facebook {
+  width: 140%;
 }
 
 .registerLink {

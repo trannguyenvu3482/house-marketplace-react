@@ -117,7 +117,7 @@ const SignUp = () => {
           <OAuth />
 
           <Link to="/sign-in" className="registerLink">
-            Sign In
+            Sign In Instead
           </Link>
         </main>
       </div>
