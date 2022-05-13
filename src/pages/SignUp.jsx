@@ -1,7 +1,16 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase.config';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
+import { OAuth } from '../components';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,6 +29,37 @@ const SignUp = () => {
     }));
   };
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, 'users', user.uid), formDataCopy);
+
+      navigate('/');
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        toast.error('This email is already in use');
+      } else {
+        toast.error('Something is wrong, please try again later');
+      }
+    }
+  };
+
   return (
     <>
       <div className="pageContainer">
@@ -27,7 +67,7 @@ const SignUp = () => {
           <p className="pageHeader">Welcome Back!</p>
         </header>
         <main>
-          <form>
+          <form onSubmit={onSubmit}>
             <input
               type="text"
               className="nameInput"
@@ -68,13 +108,13 @@ const SignUp = () => {
 
             <div className="signUpBar">
               <p className="signUpText">Sign Up</p>
-              <button className="signUpButton">
+              <button className="signUpButton" type="submit">
                 <ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
               </button>
             </div>
           </form>
 
-          {/* Google OAuth */}
+          <OAuth />
 
           <Link to="/sign-in" className="registerLink">
             Sign In

@@ -1,8 +1,8 @@
 import Explore from './Explore';
 import ForgotPassword from './ForgotPassword';
 import Offers from './Offers';
-import Profiles from './Profiles';
+import Profile from './Profile';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
-export { Explore, ForgotPassword, Offers, Profiles, SignIn, SignUp };
+export { Explore, ForgotPassword, Offers, Profile, SignIn, SignUp };
