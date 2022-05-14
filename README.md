@@ -2,6 +2,24 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Features and Technologies used
+### Features
+- Upload listing for a property (Sell/Rent)
+- User Authentication (Login/Logout/...)
+- Buying a property
+
+### Technologies
+- React, React Router DOM
+- Firebase 9 (Authentication, Queries, Storage)
+- Axios for API fetching
+- Material UI
+- Radar Geocode
+- Leaflet
+- Swiper
+
+### Demo
+You can check out the demo at ...
+
 ## Available Scripts
 
 In the project directory, you can run:
