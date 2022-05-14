@@ -6,6 +6,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, ProgressBar } from '../components';
@@ -106,7 +107,7 @@ const CreateListing = () => {
         },
       });
 
-      geolocation.lat = data.addresses[0]?.latitute ?? 0;
+      geolocation.lat = data.addresses[0]?.latitude ?? 0;
       geolocation.lng = data.addresses[0]?.longitude ?? 0;
 
       location =
@@ -122,7 +123,7 @@ const CreateListing = () => {
     } else {
       geolocation.lat = latitude;
       geolocation.lng = longitude;
-      location = address;
+      // location = address;
     }
 
     // Store images in Firebase
@@ -183,7 +184,23 @@ const CreateListing = () => {
       toast.error(error);
     });
 
+    const formDataCopy = {
+      ...formData,
+      imageUrls: imgUrls,
+      geolocation,
+      timestamp: serverTimestamp(),
+    };
+
+    formDataCopy.location = address;
+    delete formDataCopy.images;
+    delete formDataCopy.address;
+    // location && (formDataCopy.location = location);
+    !formDataCopy.offer && delete formDataCopy.discountedPrice;
+
+    const docRef = await addDoc(collection(db, 'listings'), formDataCopy);
     setLoading(false);
+    toast.success('Listing added successfully');
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
 
   const onMutate = (e) => {
