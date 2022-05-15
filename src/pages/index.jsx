@@ -6,6 +6,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Category from './Category';
 import CreateListing from './CreateListing';
+import Listing from './Listing';
 export {
   Explore,
   ForgotPassword,
@@ -15,4 +16,5 @@ export {
   SignUp,
   Category,
   CreateListing,
+  Listing,
 };
