@@ -37,7 +37,6 @@ const Listing = () => {
     return <Spinner />;
   }
 
-  console.log(listing.imageUrls[0]);
   return (
     <main>
       <Swiper

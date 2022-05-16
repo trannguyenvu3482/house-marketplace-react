@@ -8,6 +8,7 @@ import Category from './Category';
 import CreateListing from './CreateListing';
 import Listing from './Listing';
 import Contact from './Contact';
+import EditListing from './EditListing';
 export {
   Explore,
   ForgotPassword,
@@ -19,4 +20,5 @@ export {
   CreateListing,
   Listing,
   Contact,
+  EditListing,
 };
