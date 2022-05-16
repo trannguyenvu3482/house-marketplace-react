@@ -6,11 +6,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Features
 - Upload listing for a property (Sell/Rent)
 - User Authentication (Login/Logout/...)
-- Buying a property
+- Create/Update/Delete a listing from Firestore
+- Mobile First Design
+- Responsive: Yes
 
 ### Technologies
 - React, React Router DOM
-- Firebase 9 (Authentication, Queries, Storage)
+- Firebase 9 (Authentication, Firestore, Storage)
 - Axios for API fetching
 - Material UI
 - Radar Geocode
@@ -18,7 +20,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Swiper
 
 ### Demo
-You can check out the demo at ...
+You can check out the demo at [https://vutran-housemarketplace.netlify.app](https://vutran-housemarketplace.netlify.app)
 
 ## Available Scripts
 
