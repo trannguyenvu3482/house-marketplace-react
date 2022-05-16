@@ -12,6 +12,7 @@ import {
   Category,
   CreateListing,
   Listing,
+  Contact,
 } from './pages/';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             path="/category/:categoryName/:listingId"
             element={<Listing />}
           />
+          <Route path="/contact/:landlordId" element={<Contact />} />
         </Routes>
         <Navbar />
       </Router>
